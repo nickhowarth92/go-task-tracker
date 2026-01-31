@@ -4,5 +4,6 @@ type User struct {
 	ID    uint   `json:"id" gorm:"primaryKey"`
 	Name  string `json:"name"`
 	Email string `json:"email"`
-	Tasks []Task `json:"tasks"` // One-to-Many
+	// One user -> many tasks
+	Tasks []Task `json:"tasks,omitempty" gorm:"foreignKey:UserID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE"`
 }

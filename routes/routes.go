@@ -20,9 +20,11 @@ func SetupRoutes() *mux.Router {
 	api.HandleFunc("/tasks/{id}", handlers.UpdateTask).Methods(http.MethodPut)
 	api.HandleFunc("/tasks/{id}", handlers.DeleteTask).Methods(http.MethodDelete)
 
-	// TODO: User routes (once added)
-	// api.HandleFunc("/users", handlers.GetUsers).Methods(http.MethodGet)
-	// api.HandleFunc("/users", handlers.CreateUser).Methods(http.MethodPost)
+	// User routes
+	api.HandleFunc("/users", handlers.GetUsers).Methods(http.MethodGet)
+	api.HandleFunc("/users", handlers.CreateUser).Methods(http.MethodPost)
+	api.HandleFunc("/users/{id}", handlers.UpdateUser).Methods(http.MethodPut)
+	api.HandleFunc("/users/{id}", handlers.DeleteUser).Methods(http.MethodDelete)
 
 	// Health check endpoint
 	router.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {

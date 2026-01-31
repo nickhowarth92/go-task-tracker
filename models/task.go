@@ -5,6 +5,9 @@ type Task struct {
 	Title       string `json:"title"`
 	Description string `json:"description"`
 	Completed   bool   `json:"completed"`
-	UserID      uint   `json:"user_id"`
-	User        User   `json:"user"`
+
+	// Foreign key (points to users.id)
+	UserID uint `json:"user_id" gorm:"not null;index"`
+	// Belongs to one user
+	User User `json:"user,omitempty" gorm:"foreignKey:UserID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE"`
 }
